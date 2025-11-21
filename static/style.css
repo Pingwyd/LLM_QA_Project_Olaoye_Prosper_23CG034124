@@ -1,9 +1,10 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #0f172a; /* Dark blue background */
-    color: #e2e8f0; /* Light text */
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0f172a;
+    background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f172a 75%);
+    color: #e2e8f0;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,15 +12,22 @@ body {
 }
 
 .container {
-    background-color: #1e293b; /* Slightly lighter dark blue for card */
-    padding: 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    width: 90%;
-    max-width: 700px;
-    border: 1px solid #334155;
+    background-color: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(12px);
+    padding: 3rem;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 750px;
+    border: 1px solid rgba(148, 163, 184, 0.1);
     position: relative;
     overflow: hidden;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* Subtle gradient top border */
@@ -41,15 +49,21 @@ h1 {
     color: #f8fafc;
     text-align: center;
     margin-bottom: 0.5rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    font-size: 2.2rem;
+    background: linear-gradient(to right, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 p {
     text-align: center;
     color: #94a3b8;
     margin-bottom: 0;
-    font-size: 0.95rem;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 .form-group {
@@ -72,59 +86,62 @@ label {
 
 textarea {
     width: 100%;
-    padding: 1rem;
-    background-color: #0f172a;
+    padding: 1.25rem;
+    background-color: rgba(15, 23, 42, 0.6);
     border: 2px solid #334155;
-    border-radius: 12px;
-    font-size: 1rem;
+    border-radius: 16px;
+    font-size: 1.05rem;
     color: #f1f5f9;
     box-sizing: border-box;
-    transition: all 0.3s ease;
-    font-family: 'Segoe UI', sans-serif;
-    line-height: 1.5;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: inherit;
+    line-height: 1.6;
+    resize: vertical;
 }
 
 textarea:focus {
     outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
-    background-color: #131c31;
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.15);
+    background-color: rgba(15, 23, 42, 0.8);
 }
 
 .keyboard-hint {
     position: absolute;
-    bottom: 10px;
-    right: 15px;
+    bottom: 12px;
+    right: 16px;
     font-size: 0.75rem;
-    color: #64748b;
+    color: #94a3b8;
     pointer-events: none;
     background: rgba(15, 23, 42, 0.8);
-    padding: 2px 6px;
-    border-radius: 4px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(148, 163, 184, 0.1);
 }
 
 button {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     width: 100%;
-    padding: 1rem;
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    padding: 1.1rem;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
     color: #fff;
     border: none;
-    border-radius: 12px;
+    border-radius: 16px;
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+    letter-spacing: 0.025em;
 }
 
 button:hover {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    background: linear-gradient(135deg, #60a5fa, #3b82f6);
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
 }
 
 button:active {
@@ -168,15 +185,16 @@ h3::before {
 }
 
 .answer-box {
-    background-color: #172554; /* Very dark blue for answer */
-    padding: 1.25rem;
-    border-radius: 12px;
-    border: 1px solid #1e40af;
+    background-color: rgba(30, 58, 138, 0.3);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(96, 165, 250, 0.2);
     white-space: pre-wrap;
-    line-height: 1.7;
+    line-height: 1.8;
     color: #e2e8f0;
     font-size: 1.05rem;
     overflow-wrap: break-word;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 @keyframes slideUp {
