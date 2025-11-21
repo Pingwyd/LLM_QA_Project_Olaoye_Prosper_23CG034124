@@ -35,9 +35,9 @@ def get_llm_response(question, api_key):
             "Content-Type": "application/json"
         }
         
-        # Using Qwen 2.5 model (fast and free)
+        # Using Gemma 2 model
         payload = {
-            "model": "Qwen/Qwen2.5-7B-Instruct",
+            "model": "google/gemma-2-9b-it",
             "messages": [
                 {
                     "role": "user",
