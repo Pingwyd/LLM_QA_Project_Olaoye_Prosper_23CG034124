@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prospers' Q&A System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header-section">
+            <h1>Prospers' NLP Question & Answering System🤲</h1>
+            <p>Powered by Hugging Face (Qwen 2.5 Model)</p>
+        </div>
+
+        <form method="POST" action="/" id="qa-form">
+            <div class="form-group">
+                <label for="question">Ask a question:</label>
+                <div class="textarea-wrapper">
+                    <textarea id="question" name="question" rows="4" required placeholder="Type your question here... (Press Enter to submit, Shift+Enter for new line)">{{ original_question if original_question else '' }}</textarea>
+                    <div class="keyboard-hint">↵ to submit</div>
+                </div>
+            </div>
+            
+            <button type="submit" id="submit-btn">
+                <span>Get Answer</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+        </form>
+
+        {% if processed_question %}
+        <div class="result-section">
+            <h3>Processed Question</h3>
+            <div class="processed-text">{{ processed_question }}</div>
+        </div>
+        {% endif %}
+
+        {% if answer %}
+        <div class="result-section">
+            <h3>LLM Response</h3>
+            <div class="answer-box">
+                {{ answer | safe }}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div id="loading-overlay" class="hidden">
+        <div class="spinner"></div>
+        <p>Thinking...</p>
+    </div>
+
+    <script>
+        const textarea = document.getElementById('question');
+        const form = document.getElementById('qa-form');
+        const loadingOverlay = document.getElementById('loading-overlay');
+
+        // Auto-focus textarea on load
+        textarea.focus();
+
+        // Handle Enter key
+        textarea.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault(); // Prevent newline
+                if (textarea.value.trim() !== "") {
+                    form.submit();
+                    showLoading();
+                }
+            }
+        });
+
+        // Handle form submit
+        form.addEventListener('submit', function() {
+            showLoading();
+        });
+
+        function showLoading() {
+            loadingOverlay.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
