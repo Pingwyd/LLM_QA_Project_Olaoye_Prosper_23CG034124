@@ -26,18 +26,23 @@ def get_llm_response(question):
         return "Error: Hugging Face API Key not configured."
     
     try:
-        # Using Zephyr-7B-Beta via direct API call for maximum compatibility
-        api_url = "https://router.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta/v1/chat/completions"
-        headers = {"Authorization": f"Bearer {HUGGINGFACE_API_KEY}"}
+        # Using Hugging Face Router endpoint (OpenAI-compatible)
+        api_url = "https://router.huggingface.co/v1/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {HUGGINGFACE_API_KEY}",
+            "Content-Type": "application/json"
+        }
         
+        # Using Gemma 2 model
         payload = {
-            "model": "HuggingFaceH4/zephyr-7b-beta",
+            "model": "google/gemma-2-9b-it",
             "messages": [{"role": "user", "content": question}],
             "max_tokens": 500,
+            "temperature": 0.7,
             "stream": False
         }
         
-        print(f"Sending request to Hugging Face API (Zephyr)...")
+        print(f"Sending request to Hugging Face API (Gemma 2)...")
         response = requests.post(api_url, headers=headers, json=payload)
         
         if response.status_code != 200:

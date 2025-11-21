@@ -9,7 +9,8 @@
 <body>
     <div class="container">
         <div class="header-section">
-            <h1>Prospers' NLP Question & Answering System🤲</h1>
+            <h1>Prospers' 
+NLP Question & Answering System🤲</h1>
             <p>Powered by Hugging Face (Qwen 2.5 Model)</p>
         </div>
 
@@ -45,15 +46,9 @@
         {% endif %}
     </div>
 
-    <div id="loading-overlay" class="hidden">
-        <div class="spinner"></div>
-        <p>Thinking...</p>
-    </div>
-
     <script>
         const textarea = document.getElementById('question');
         const form = document.getElementById('qa-form');
-        const loadingOverlay = document.getElementById('loading-overlay');
 
         // Auto-focus textarea on load
         textarea.focus();
@@ -64,19 +59,9 @@
                 e.preventDefault(); // Prevent newline
                 if (textarea.value.trim() !== "") {
                     form.submit();
-                    showLoading();
                 }
             }
         });
-
-        // Handle form submit
-        form.addEventListener('submit', function() {
-            showLoading();
-        });
-
-        function showLoading() {
-            loadingOverlay.classList.remove('hidden');
-        }
     </script>
 </body>
 </html>

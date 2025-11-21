@@ -169,63 +169,17 @@ h3::before {
 
 .answer-box {
     background-color: #172554; /* Very dark blue for answer */
-    padding: 1.5rem;
+    padding: 1.25rem;
     border-radius: 12px;
     border: 1px solid #1e40af;
     white-space: pre-wrap;
     line-height: 1.7;
     color: #e2e8f0;
     font-size: 1.05rem;
-}
-
-/* Loading Overlay */
-.hidden {
-    display: none !important;
-}
-
-#loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(15, 23, 42, 0.85);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    backdrop-filter: blur(8px);
-}
-
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid #334155;
-    border-top: 4px solid #3b82f6;
-    border-radius: 50%;
-    animation: spin 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
-    margin-bottom: 1rem;
-}
-
-#loading-overlay p {
-    color: #fff;
-    font-weight: 500;
-    letter-spacing: 1px;
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    overflow-wrap: break-word;
 }
 
 @keyframes slideUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
 }
